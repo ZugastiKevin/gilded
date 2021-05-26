@@ -1,5 +1,5 @@
-pour lancer gilded_rose faite:
-npm install
-npm test
+<h1>pour lancer gilded_rose faite:</h1>
+<p>npm install</p>
+<p>npm test</p>
 
-bonne correction!
+<h2>bonne correction!</h2>
