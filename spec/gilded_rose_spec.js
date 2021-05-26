@@ -7,7 +7,7 @@ describe("GildedRose shop manager", function () {
     listItems = [];
   });
 
-  it("Baisser de 1 la qualité et sellIn d'item normaux", function () {
+  it("Un test pour voir qualité et sellIn baisse bien de 1", function () {
     listItems.push(new Item("+5 Dexterity Vest", 10, 20));
     listItems.push(new Item("Mana Cake", 3, 6));
 
@@ -24,7 +24,7 @@ describe("GildedRose shop manager", function () {
     });
   });
 
-  it("Augmenter la qualité de 1 pour Aged Brie et Backstage passes", function () {
+  it("Un test pour voir si la qualité augmente bien de 1 pour les items dont c'est le cas", function () {
     listItems.push(new Item("Aged Brie", 20, 30));
     listItems.push(new Item("Backstage passes to a TAFKAL80ETC concert", 20, 30));
 
@@ -41,7 +41,7 @@ describe("GildedRose shop manager", function () {
     });
   });
 
-  it("Le Sulfuras étant légendaire, il n'a pas de jour de péremption, et il y a une qualité fixe à 80", function () {
+  it("Tester si la qualité de Sulfuras ne se modifie pas", function () {
     listItems.push(new Item("Sulfuras, Hand of Ragnaros", null, 80));
 
     const gildedRose = new Shop(listItems);
@@ -56,13 +56,15 @@ describe("GildedRose shop manager", function () {
     });
   });
 
-  it("Augmenter la qualité de 3 quand il reste 5 jours pour Backstage passes", function () {
+  it("Tester si la qualité augmente par 3 quand il reste 5 jours ou moins (Aged Brie et Backstage passes)", function () {
+    listItems.push(new Item("Aged Brie", 2, 43));
     listItems.push(new Item("Backstage passes to a TAFKAL80ETC concert", 5, 35));
 
     const gildedRose = new Shop(listItems);
     const items = gildedRose.updateQuality();
 
     var expected = [
+      { sellIn: 1, quality: 46 },
       { sellIn: 4, quality: 38 },
     ];
     expected.forEach(function (testCase, idx) {
